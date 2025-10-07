@@ -1,0 +1,1766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GZonesvertes</class>
+ <widget class="QMainWindow" name="GZonesvertes">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1100</width>
+    <height>750</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Gestion des Espaces Verts - Système de Management</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #f8f9fa, stop:1 #e9ecef);</string>
+   </property>
+   <layout class="QVBoxLayout" name="mainLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="margin" stdset="0">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane {
+         border: 2px solid #dee2e6;
+         border-radius: 12px;
+         background-color: white;
+         margin-top: 5px;
+       }
+       QTabWidget::tab-bar {
+         alignment: center;
+       }
+       QTabBar::tab {
+         background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f1f3f4, stop:1 #e8eaed);
+         color: #495057;
+         padding: 16px 35px;
+         margin-right: 3px;
+         border: 1px solid #ced4da;
+         border-top-left-radius: 10px;
+         border-top-right-radius: 10px;
+         border-bottom: none;
+         font-size: 14px;
+         font-weight: bold;
+         min-width: 180px;
+       }
+       QTabBar::tab:selected {
+         background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #f8f9fa);
+         color: #2c3e50;
+         border-bottom: 3px solid #2ecc71;
+         font-weight: bold;
+       }
+       QTabBar::tab:hover {
+         background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e9ecef, stop:1 #dee2e6);
+         color: #2c3e50;
+       }</string>
+      </property>
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="QWidget" name="afficherEspacesTab">
+       <attribute name="title">
+        <string>🌳 Afficher Espaces</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="afficherLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="margin" stdset="0">
+         <number>25</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="afficherTitleLabel">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; 
+           background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2c3e50, stop:1 #2ecc71);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           padding: 5px;</string>
+          </property>
+          <property name="text">
+           <string>📊 Liste des Espaces Verts</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="line">
+          <property name="styleSheet">
+           <string notr="true">background-color: #2ecc71; height: 2px; border: none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="searchWidget">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+             font-size: 16px;
+             font-weight: bold;
+             color: #2c3e50;
+             border: 2px solid #dee2e6;
+             border-radius: 10px;
+             margin-top: 10px;
+             padding-top: 15px;
+             background-color: white;
+           }
+           QGroupBox::title {
+             subcontrol-origin: margin;
+             left: 15px;
+             padding: 0 15px 0 15px;
+             background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2ecc71, stop:1 #27ae60);
+             color: white;
+             border-radius: 5px;
+           }</string>
+          </property>
+          <property name="title">
+           <string>Outils de Recherche</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>12</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="rechercherLabel">
+               <property name="minimumSize">
+                <size>
+                 <width>200</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+               </property>
+               <property name="text">
+                <string>🔍 Rechercher un espace vert :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="rechercherInput">
+               <property name="minimumSize">
+                <size>
+                 <width>250</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QLineEdit {
+                  padding: 12px;
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+                  font-size: 14px;
+                  color: #2c3e50;
+                  background-color: white;
+                }
+                QLineEdit:focus {
+                  border: 2px solid #2ecc71;
+                  background-color: #f8f9fa;
+                }
+                QLineEdit::placeholder {
+                  color: #6c757d;
+                  font-style: italic;
+                }</string>
+               </property>
+               <property name="placeholderText">
+                <string>Rechercher par localisation, type ou nom...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="rechercherBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2ecc71, stop:1 #27ae60);
+                  color: white;
+                  padding: 12px 25px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 14px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27ae60, stop:1 #229954);
+                  transform: translateY(-1px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #229954, stop:1 #1e8449);
+                }</string>
+               </property>
+               <property name="text">
+                <string>🔍 Rechercher</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="trierLabel">
+               <property name="minimumSize">
+                <size>
+                 <width>80</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+               </property>
+               <property name="text">
+                <string>📊 Trier par :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="trierCombo">
+               <property name="minimumSize">
+                <size>
+                 <width>204</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QComboBox {
+                  padding: 10px;
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+                  font-size: 14px;
+                  min-width: 180px;
+                  color: #2c3e50;
+                  background-color: white;
+                }
+                QComboBox::drop-down {
+                  border: none;
+                  width: 30px;
+                }
+                QComboBox::down-arrow {
+                  image: none;
+                  border-left: 5px solid transparent;
+                  border-right: 5px solid transparent;
+                  border-top: 6px solid #2c3e50;
+                }
+                QComboBox QAbstractItemView {
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+                  background-color: white;
+                  color: #2c3e50;
+                  selection-background-color: #2ecc71;
+                  selection-color: white;
+                }</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Superficie</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Type</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>État de santé</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Localisation</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="exportPdfBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27ae60, stop:1 #219653);
+                  color: white;
+                  padding: 12px 25px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 14px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #219653, stop:1 #1e8449);
+                  transform: translateY(-1px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1e8449, stop:1 #196f3d);
+                }</string>
+               </property>
+               <property name="text">
+                <string>📄 Exporter PDF</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="espaceVertTableWidget">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTableWidget {
+             gridline-color: #dee2e6;
+             background-color: white;
+             alternate-background-color: #f8f9fa;
+             border: 2px solid #dee2e6;
+             border-radius: 10px;
+             color: #2c3e50;
+           }
+           QHeaderView::section {
+             background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2c3e50, stop:1 #34495e);
+             color: white;
+             padding: 15px;
+             border: 1px solid #2c3e50;
+             font-weight: bold;
+             font-size: 14px;
+           }
+           QTableWidget::item {
+             padding: 12px;
+             border-bottom: 1px solid #e9ecef;
+             color: #495057;
+           }
+           QTableWidget::item:selected {
+             background-color: #2ecc71;
+             color: white;
+           }
+           QTableWidget::item:hover {
+             background-color: #d5f4e6;
+           }</string>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Localisation</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Superficie (m²)</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Date Plantation</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>État Santé</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="ajouterEspaceTab">
+       <attribute name="title">
+        <string>➕ Ajouter Espace</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="ajouterLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="margin" stdset="0">
+         <number>25</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="ajouterTitleLabel">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; 
+           background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2c3e50, stop:1 #2ecc71);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           padding: 5px;</string>
+          </property>
+          <property name="text">
+           <string>🌱 Ajouter un Nouvel Espace Vert</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="line_2">
+          <property name="styleSheet">
+           <string notr="true">background-color: #2ecc71; height: 2px; border: none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="addEspaceGroup">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>450</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+             font-size: 18px;
+             font-weight: bold;
+             color: #2c3e50;
+             border: 2px solid #dee2e6;
+             border-radius: 12px;
+             margin-top: 15px;
+             padding-top: 20px;
+             background-color: white;
+           }
+           QGroupBox::title {
+             subcontrol-origin: margin;
+             left: 20px;
+             padding: 8px 20px 8px 20px;
+             background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2ecc71, stop:1 #27ae60);
+             color: white;
+             border-radius: 8px;
+           }</string>
+          </property>
+          <property name="title">
+           <string>📋 Informations de l'espace vert</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="horizontalSpacing">
+            <number>20</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>15</number>
+           </property>
+           <property name="margin" stdset="0">
+            <number>20</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="localisationLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📍 Localisation :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="localisationInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QLineEdit:focus {
+                border: 2px solid #2ecc71;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="typeLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>🏞️ Type :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="typeCombo">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+                padding: 10px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QComboBox:focus {
+                border: 2px solid #2ecc71;
+              }
+              QComboBox::drop-down {
+                border: none;
+                width: 30px;
+              }
+              QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #2c3e50;
+              }
+              QComboBox QAbstractItemView {
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                background-color: white;
+                color: #2c3e50;
+                selection-background-color: #2ecc71;
+                selection-color: white;
+              }</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Parc</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Jardin</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Square</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Forêt urbaine</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="superficieLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📐 Superficie (m²) :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="superficieInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QSpinBox:focus {
+                border: 2px solid #2ecc71;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+             <property name="maximum">
+              <number>1000000</number>
+             </property>
+             <property name="singleStep">
+              <number>100</number>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="dateLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📅 Date de plantation :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDateEdit" name="datePlantation">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QDateEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QDateEdit::drop-down {
+                  subcontrol-origin: padding;
+                  subcontrol-position: top right;
+                  width: 30px;
+                  border-left-width: 1px;
+                  border-left-color: #dee2e6;
+                  border-left-style: solid;
+                  border-top-right-radius: 8px;
+                  border-bottom-right-radius: 8px;
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f8f9fa, stop:1 #e9ecef);
+              }
+              QDateEdit::down-arrow {
+                  image: none;
+                  border-left: 6px solid transparent;
+                  border-right: 6px solid transparent;
+                  border-top: 6px solid #2c3e50;
+                  width: 0px;
+                  height: 0px;
+              }
+              QDateEdit QCalendarWidget {
+                  background-color: white;
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+              }
+              QDateEdit QCalendarWidget QToolButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2ecc71, stop:1 #27ae60);
+                  color: white;
+                  font-weight: bold;
+                  border-radius: 6px;
+                  padding: 8px;
+              }
+              QDateEdit QCalendarWidget QToolButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27ae60, stop:1 #229954);
+              }
+              QDateEdit QCalendarWidget QMenu {
+                  background-color: white;
+                  color: #2c3e50;
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+              }
+              QDateEdit QCalendarWidget QSpinBox {
+                  background-color: white;
+                  color: #2c3e50;
+                  selection-background-color: #2ecc71;
+                  border: 1px solid #dee2e6;
+                  border-radius: 4px;
+              }
+              QDateEdit QCalendarWidget QWidget { 
+                  alternate-background-color: #f8f9fa;
+              }
+              QDateEdit QCalendarWidget QAbstractItemView:enabled {
+                  background-color: white;
+                  color: #2c3e50;
+                  selection-background-color: #2ecc71;
+                  selection-color: white;
+                  border-radius: 4px;
+              }
+              QDateEdit QCalendarWidget QAbstractItemView:disabled {
+                  color: #adb5bd;
+              }</string>
+             </property>
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+             <property name="date">
+              <date>
+               <year>2024</year>
+               <month>1</month>
+               <day>1</day>
+              </date>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="plantesLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>🌿 Plantes :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QTextEdit" name="plantesInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTextEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QTextEdit:focus {
+                border: 2px solid #2ecc71;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+             <property name="placeholderText">
+              <string>Liste des espèces végétales présentes...</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="etatSanteLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>💚 État de santé :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="etatSanteCombo">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+                padding: 10px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QComboBox:focus {
+                border: 2px solid #2ecc71;
+              }
+              QComboBox::drop-down {
+                border: none;
+                width: 30px;
+              }
+              QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #2c3e50;
+              }
+              QComboBox QAbstractItemView {
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                background-color: white;
+                color: #2c3e50;
+                selection-background-color: #2ecc71;
+                selection-color: white;
+              }</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Excellent</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Moyen</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Faible</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Critique</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="ajouterBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27ae60, stop:1 #219653);
+                  color: white;
+                  padding: 15px 35px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #219653, stop:1 #1e8449);
+                  transform: translateY(-2px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #1e8449, stop:1 #196f3d);
+                  transform: translateY(0px);
+                }</string>
+               </property>
+               <property name="text">
+                <string>✅ Ajouter</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="annulerBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e74c3c, stop:1 #c0392b);
+                  color: white;
+                  padding: 15px 35px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #c0392b, stop:1 #a93226);
+                  transform: translateY(-2px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #a93226, stop:1 #922b21);
+                  transform: translateY(0px);
+                }</string>
+               </property>
+               <property name="text">
+                <string>❌ Annuler</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="modifierEspaceTab">
+       <attribute name="title">
+        <string>✏️ Modifier Espace</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="modifierLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="margin" stdset="0">
+         <number>25</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="modifierTitleLabel">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; 
+           background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2c3e50, stop:1 #2ecc71);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           padding: 5px;</string>
+          </property>
+          <property name="text">
+           <string>✏️ Modifier un Espace Vert</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="line_3">
+          <property name="styleSheet">
+           <string notr="true">background-color: #2ecc71; height: 2px; border: none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="modifierEspaceGroup">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>500</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+             font-size: 18px;
+             font-weight: bold;
+             color: #2c3e50;
+             border: 2px solid #dee2e6;
+             border-radius: 12px;
+             margin-top: 15px;
+             padding-top: 20px;
+             background-color: white;
+           }
+           QGroupBox::title {
+             subcontrol-origin: margin;
+             left: 20px;
+             padding: 8px 20px 8px 20px;
+             background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3498db, stop:1 #2980b9);
+             color: white;
+             border-radius: 8px;
+           }</string>
+          </property>
+          <property name="title">
+           <string>📋 Modifier les informations</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="horizontalSpacing">
+            <number>20</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>15</number>
+           </property>
+           <property name="margin" stdset="0">
+            <number>20</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="selectEspaceLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>🔍 Sélectionner l'espace :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="selectEspaceCombo">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+                padding: 10px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QComboBox:focus {
+                border: 2px solid #3498db;
+              }
+              QComboBox::drop-down {
+                border: none;
+                width: 30px;
+              }
+              QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #2c3e50;
+              }
+              QComboBox QAbstractItemView {
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                background-color: white;
+                color: #2c3e50;
+                selection-background-color: #3498db;
+                selection-color: white;
+              }</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="modifLocalisationLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📍 Localisation :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="modifLocalisationInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QLineEdit:focus {
+                border: 2px solid #3498db;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="modifTypeLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>🏞️ Type :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="modifTypeCombo">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+                padding: 10px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QComboBox:focus {
+                border: 2px solid #3498db;
+              }
+              QComboBox::drop-down {
+                border: none;
+                width: 30px;
+              }
+              QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #2c3e50;
+              }
+              QComboBox QAbstractItemView {
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                background-color: white;
+                color: #2c3e50;
+                selection-background-color: #3498db;
+                selection-color: white;
+              }</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Parc</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Jardin</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Square</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Forêt urbaine</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="modifSuperficieLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📐 Superficie (m²) :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QSpinBox" name="modifSuperficieInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QSpinBox {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QSpinBox:focus {
+                border: 2px solid #3498db;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+             <property name="maximum">
+              <number>1000000</number>
+             </property>
+             <property name="singleStep">
+              <number>100</number>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="modifDateLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>📅 Date de plantation :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QDateEdit" name="modifDatePlantation">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QDateEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QDateEdit::drop-down {
+                  subcontrol-origin: padding;
+                  subcontrol-position: top right;
+                  width: 30px;
+                  border-left-width: 1px;
+                  border-left-color: #dee2e6;
+                  border-left-style: solid;
+                  border-top-right-radius: 8px;
+                  border-bottom-right-radius: 8px;
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f8f9fa, stop:1 #e9ecef);
+              }
+              QDateEdit::down-arrow {
+                  image: none;
+                  border-left: 6px solid transparent;
+                  border-right: 6px solid transparent;
+                  border-top: 6px solid #2c3e50;
+                  width: 0px;
+                  height: 0px;
+              }</string>
+             </property>
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="modifPlantesLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>🌿 Plantes :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QTextEdit" name="modifPlantesInput">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTextEdit {
+                padding: 12px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QTextEdit:focus {
+                border: 2px solid #3498db;
+                background-color: #f8f9fa;
+              }</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="modifEtatSanteLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 14px; padding: 8px;</string>
+             </property>
+             <property name="text">
+              <string>💚 État de santé :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QComboBox" name="modifEtatSanteCombo">
+             <property name="minimumSize">
+              <size>
+               <width>200</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {
+                padding: 10px;
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                font-size: 14px;
+                color: #2c3e50;
+                background-color: white;
+              }
+              QComboBox:focus {
+                border: 2px solid #3498db;
+              }
+              QComboBox::drop-down {
+                border: none;
+                width: 30px;
+              }
+              QComboBox::down-arrow {
+                image: none;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid #2c3e50;
+              }
+              QComboBox QAbstractItemView {
+                border: 2px solid #dee2e6;
+                border-radius: 8px;
+                background-color: white;
+                color: #2c3e50;
+                selection-background-color: #3498db;
+                selection-color: white;
+              }</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Excellent</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Bon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Moyen</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Faible</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Critique</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="modifierBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3498db, stop:1 #2980b9);
+                  color: white;
+                  padding: 15px 35px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2980b9, stop:1 #2471a3);
+                  transform: translateY(-2px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2471a3, stop:1 #1f618d);
+                  transform: translateY(0px);
+                }</string>
+               </property>
+               <property name="text">
+                <string>💾 Modifier</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="supprimerBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e74c3c, stop:1 #c0392b);
+                  color: white;
+                  padding: 15px 35px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #c0392b, stop:1 #a93226);
+                  transform: translateY(-2px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #a93226, stop:1 #922b21);
+                  transform: translateY(0px);
+                }</string>
+               </property>
+               <property name="text">
+                <string>🗑️ Supprimer</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="modifAnnulerBtn">
+               <property name="minimumSize">
+                <size>
+                 <width>140</width>
+                 <height>50</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #95a5a6, stop:1 #7f8c8d);
+                  color: white;
+                  padding: 15px 35px;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: bold;
+                  font-size: 16px;
+                }
+                QPushButton:hover {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #7f8c8d, stop:1 #707b7c);
+                  transform: translateY(-2px);
+                }
+                QPushButton:pressed {
+                  background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #707b7c, stop:1 #616a6b);
+                  transform: translateY(0px);
+                }</string>
+               </property>
+               <property name="text">
+                <string>❌ Annuler</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="statistiquesTab">
+       <attribute name="title">
+        <string>📈 Statistiques</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="statistiquesLayout">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <property name="margin" stdset="0">
+         <number>25</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="statistiquesTitleLabel">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; 
+           background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2c3e50, stop:1 #2ecc71);
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           padding: 5px;</string>
+          </property>
+          <property name="text">
+           <string>📈 Statistiques des Espaces Verts</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="line_4">
+          <property name="styleSheet">
+           <string notr="true">background-color: #2ecc71; height: 2px; border: none;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="statsGroup">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>400</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QGroupBox {
+             font-size: 18px;
+             font-weight: bold;
+             color: #2c3e50;
+             border: 2px solid #dee2e6;
+             border-radius: 12px;
+             margin-top: 15px;
+             padding-top: 20px;
+             background-color: white;
+           }
+           QGroupBox::title {
+             subcontrol-origin: margin;
+             left: 20px;
+             padding: 8px 20px 8px 20px;
+             background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #9b59b6, stop:1 #8e44ad);
+             color: white;
+             border-radius: 8px;
+           }</string>
+          </property>
+          <property name="title">
+           <string>📊 Statistiques Globales</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="horizontalSpacing">
+            <number>30</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>20</number>
+           </property>
+           <property name="margin" stdset="0">
+            <number>25</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="totalEspacesLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px; padding: 12px; 
+              background-color: #e8f6f3; border-radius: 8px; border: 2px solid #2ecc71;</string>
+             </property>
+             <property name="text">
+              <string>🌳 Total Espaces: 0</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="superficieTotaleLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px; padding: 12px; 
+              background-color: #e8f6f3; border-radius: 8px; border: 2px solid #2ecc71;</string>
+             </property>
+             <property name="text">
+              <string>📐 Superficie Totale: 0 m²</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="moyenneSanteLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px; padding: 12px; 
+              background-color: #e8f6f3; border-radius: 8px; border: 2px solid #2ecc71;</string>
+             </property>
+             <property name="text">
+              <string>💚 État de Santé Moyen: Bon</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="distributionTypeLabel">
+             <property name="styleSheet">
+              <string notr="true">font-weight: bold; color: #2c3e50; font-size: 16px; padding: 12px; 
+              background-color: #e8f6f3; border-radius: 8px; border: 2px solid #2ecc71;</string>
+             </property>
+             <property name="text">
+              <string>🏞️ Distribution par Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="graphPlaceholder">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>200</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 10px; 
+              color: #6c757d; font-size: 16px; font-style: italic;</string>
+             </property>
+             <property name="text">
+              <string>📊 Zone de graphiques statistiques</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
